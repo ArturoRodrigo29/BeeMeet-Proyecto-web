@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeMeet - Consultar Datos Invitado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="../../css/app.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+    <div id="headers"></div>
+
+    <main class="contenidoPrincipal">
+        <div class="HeroInvitado">
+            <h1 class="consultaForm__titulo text-center">Datos del invitado</h1>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="HeroInvitadoImg" class="img-fluid" style="padding: 2rem;">
+                        <img src="../../img/usuario.webp" 
+                            alt="Invitado" id="fotoInvitado">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Invitado:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control HeroInvitadoinput" type="text" value="" id="nombreInvitado"
+                                    disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Empresa / organización:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control HeroInvitadoinput" type="text" id="empresaInvitado"
+                                    value="Super Secret Intelligence" disabled>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Número de piso:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control HeroInvitadoinput" type="number" value="21" disabled>
+                            </div>
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Número de sala:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control HeroInvitadoinput" type="number" value="6" disabled>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="HeroEntradasSalidas" style="margin-top: 2rem;">
+                <h2>Lista de acompañantes</h2>
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="tablaAcompanantes">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="Dispositivos" class="cabecera">Nombre</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Correo electrónico</th>
+                                <th scope="col" data-sort="Eliminar" class="cabecera">Estatus</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="HeroDispositivos" style="margin-top: 2rem;">
+                <h2>Dispositivos electrónicos</h2>
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="tablaDispositivos">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="Dispositivos" class="cabecera">Dispositivo</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Número de serie</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="HeroDispositivos" style="margin-top: 2rem;">
+                <h2>Automóvil</h2>
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="tablaCarros">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="Dispositivos" class="cabecera">Color</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Marca</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Matrícula</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Modelo</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footers"></div>
+
+    <!-- Estilos para el Swal -->
+    <style>
+      .titleSize{
+        font-size: 4rem;
+      }
+      .contentSize{
+        font-size: 2rem !important;
+      }
+      .buttonSize{
+        font-size: 2rem !important;
+      }
+      .iconSize{
+        font-size: 1.5rem;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+
+
+
+        window.onload = function() {
+            getInfoInvitacion();
+
+        }
+
+
+
+        function getInfoInvitacion(){
+            let idReunion = 0;
+            let idInvitado = 0;
+            let url = new URLSearchParams(location.search);
+            idReunion = url.get('idReunion');
+            idInvitado = url.get('idInvitado');
+            alert("idReunion: " + idReunion + ", idInvitado:" + idInvitado);
+
+            // fetch para obtener la información del usuario y la info que va a traer
+            const data = {
+                idReunion: idReunion,
+                idInvitado: idInvitado
+            }
+            fetch("/anfitrion/reuniones/invitadoInf", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                /*
+
+                idReunion: 2
+                nombre_invitado: "jose"
+                apellido_materno_invitado: "lizardi"
+                apellido_paterno_invitado: "gabriel"
+                empresa_invitado: "escom"
+                email_invitado: "lizardigabriel9@gmail.com"
+                es_colado_invitado: 1
+
+                lista_acompanantes: Array (1)
+                0 {apellidoMat: "aqw", apellidoPat: "asd", correo: "colado1@test.com", idInvitado: 4, isConfirmed: 0, nombre: "juan"}
+
+                lista_autos: Array (1)
+                0 {color: "qwe", matricula: "que", marca: "qwe", modelo: "qwe"}
+
+                lista_dispositivos: [{no_serie: "asd", modelo: "asd", marca: "asd"}] (1)
+                * */
+
+
+                llenarCampos(data);
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+
+
+
+        }
+
+        function llenarCampos(data) {
+            document.getElementById('fotoInvitado').src = data.foto_invitado;
+            document.getElementById('nombreInvitado').value = data.nombre_invitado + ' ' + data.apellido_paterno_invitado + ' ' + data.apellido_materno_invitado;
+            document.getElementById('empresaInvitado').value = data.empresa_invitado;
+
+
+
+            let tablaCarros = document.getElementById('tablaCarros').getElementsByTagName('tbody')[0];
+            data.lista_autos.forEach(auto => {
+                let row = tablaCarros.insertRow();
+                let cellColor = row.insertCell(0);
+                let cellMarca = row.insertCell(1);
+                let cellMatricula = row.insertCell(2);
+                let cellModelo = row.insertCell(3);
+
+                cellColor.textContent = auto.color;
+                cellMarca.textContent = auto.marca;
+                cellMatricula.textContent = auto.matricula;
+                cellModelo.textContent = auto.modelo;
+
+            });
+
+            let tablaDispositivos = document.getElementById('tablaDispositivos').getElementsByTagName('tbody')[0];
+            data.lista_dispositivos.forEach(dispositivo => {
+                let row = tablaDispositivos.insertRow();
+                let cellModelo = row.insertCell(0);
+                let cellNoSerie = row.insertCell(1);
+                cellModelo.textContent = dispositivo.modelo;
+                cellNoSerie.textContent = dispositivo.no_serie;
+            });
+
+            let tablaAcompanantes = document.getElementById('tablaAcompanantes').getElementsByTagName('tbody')[0];
+            if (data.es_colado_invitado == 1) {
+
+
+                data.lista_acompanantes.forEach(acompanante => {
+                    let row = tablaAcompanantes.insertRow();
+                    let cellNombre = row.insertCell(0);
+                    let cellCorreo = row.insertCell(1);
+                    let cellEstatus = row.insertCell(2);
+                    cellNombre.textContent = acompanante.nombre + ' ' + acompanante.apellidoPat + ' ' + acompanante.apellidoMat;
+                    cellCorreo.innerHTML = `<a href="ConsultarDatosInvitado.html?idReunion=${data.idReunion}&idInvitado=${acompanante.idInvitado}">${acompanante.correo}</a>`;
+                    cellEstatus.textContent = acompanante.isConfirmed == 1 ? 'Confirmado' : 'Pendiente';
+                });
+            }else{
+                tablaAcompanantes.style.display = 'none';
+            }
+        }
+
+
+    </script>
+    <script src="../../js/anfitrion/headers.js"></script>
+    <script src="/build/js/header.js"></script>
+    <script src="../../js/sidebar.js"></script>
+    <script src="../../js/anfitrion.js"></script>
+</body>
+</html>

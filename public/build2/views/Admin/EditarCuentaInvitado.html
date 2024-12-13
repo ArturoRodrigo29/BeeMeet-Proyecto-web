@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeMeet - Detalles Reunión</title>
+    <link rel="stylesheet" href="../../css/app.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div id="headers"></div>
+
+    <!--Cotenido-->
+    <main class="contenidoPrincipal">
+        <div class="container-shadow">
+            <div class="editForm">
+                <h1 class="editForm__titulo">Editar cuenta invitado</h1>
+                <form id="miFormulario" class="Formulario needs-validation paragraph-example" novalidate>
+                    <input type="hidden" id="idUsuarioInput" >
+                    <!--Correo-->
+                    <div>
+                        <label for="emailInput" class="editForm__label">Correo electrónico*</label>
+                        <div class="inputForm">
+                            <input type="email" id="emailInput" class="input" placeholder="email@example.com" required>
+                            <div class="invalid-feedback">Ingrese un correo válido.</div>
+                        </div>
+                    </div>
+                    <!--Nombre-->
+                    <div>
+                        <label for="nombreInput" class="editForm__label">Nombre(s)*</label>
+                        <div class="inputForm">
+                            <input type="text" id="nombreInput" class="input" placeholder="Nombre" required>
+                            <div class="invalid-feedback">Ingrese su Nombre.</div>
+                        </div>
+                    </div>
+                    <!--Apellido Pa-->
+                    <div>
+                        <label for="apellidoPaternoInput" class="editForm__label">Apellido paterno*</label>
+                        <div class="inputForm">
+                            <input type="text" id="apellidoPaternoInput" class="input" placeholder="Apellido paterno" required>
+                            <div class="invalid-feedback">Ingrese su apellido paterno.</div>
+                        </div>
+                    </div>
+                    <!--Apellido Ma-->
+                    <div>
+                        <label for="apellidoMaternoInput" class="editForm__label">Apellido materno*</label>
+                        <div class="inputForm">
+                            <input type="text" id="apellidoMaternoInput" class="input" placeholder="Apellido materno" required>
+                            <div class="invalid-feedback">Ingrese su apellido materno.</div>
+                        </div>
+                    </div>
+                    <!--Número de Teléfono-->
+                    <div>
+                        <label for="telefonoInput" class="editForm__label">Número de teléfono*</label>
+                        <div class="inputForm">
+                            <input type="tel" id="telefonoInput" class="input" placeholder="55 + 1234 5678" min="0" pattern="[0-9]{10}" required>
+                            <div class="invalid-feedback">Ingrese un número telefónico válido.</div>
+                        </div>
+                    </div>
+                    <!--Botones-->
+                    <div class="button-container">
+                        <button class="button-submit">Cancelar</button>
+                        <input type="submit" class="button" value="Modificar" onclick="modificarInvi()">
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+    <div id="footers"></div>
+
+    <!-- Estilos para el Swal -->
+    <style>
+      .titleSize{
+        font-size: 4rem;
+      }
+      .contentSize{
+        font-size: 2rem !important;
+      }
+      .buttonSize{
+        font-size: 2rem !important;
+      }
+      .iconSize{
+        font-size: 1.5rem;
+      }
+    </style>
+    <script src="../../js/admin/headers.js"></script>
+    <script src="../../js/plantilla-formularios.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/sidebar.js"></script>
+    <script src="/build/js/header.js"></script>
+    <script src="../../js/superAdmin.js"></script>
+
+    <script>
+        window.onload = function () {
+            cargarDatos();
+        }
+
+        function cargarDatos() {
+            console.log("Cargando datos");
+
+            let urlParams = new URLSearchParams(window.location.search);
+            const idUsuario = urlParams.get('id');
+
+            fetch(`/admin/catalogo/invitados/${idUsuario}`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    // Rellenar los campos del formulario con los datos obtenidos
+                    document.getElementById('idUsuarioInput').value = data.id_invitado;
+                    document.getElementById('emailInput').value = data.email_invitado;
+                    document.getElementById('nombreInput').value = data.nombre_invitado;
+                    document.getElementById('apellidoPaternoInput').value = data.apellido_paterno_invitado;
+                    document.getElementById('apellidoMaternoInput').value = data.apellido_materno_invitado;
+                    document.getElementById('telefonoInput').value = data.telefono_invitado;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        }
+
+        function modificarInvi(){
+            event.preventDefault();
+            const idUsuario = document.getElementById('idUsuarioInput').value;
+            const email = document.getElementById('emailInput').value;
+            const nombre = document.getElementById('nombreInput').value;
+            const apellidoPaterno = document.getElementById('apellidoPaternoInput').value;
+            const apellidoMaterno = document.getElementById('apellidoMaternoInput').value;
+            const telefono = document.getElementById('telefonoInput').value;
+
+            let data = {
+
+                // id, email, nombre, apellidoPaterno, apellidoMaterno, telefono,
+                id: idUsuario,
+                email: email,
+                nombre: nombre,
+                apellidoPaterno: apellidoPaterno,
+                apellidoMaterno: apellidoMaterno,
+                telefono: telefono,
+                //idRol: puesto === "Seguridad Edificio" ? "Seguridad" : "Anfitrion",
+                //foto_usuario: "nada.jpg"
+
+
+            };
+
+            fetch(`/admin/catalogo/invitados`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.status == 200) {
+                        alert('res: ' + data.message + ' ststus: ' + data.status);
+                    } else {
+                        alert('error ' + data.message + ' ststus: ' + data.status);
+
+
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+
+
+
+
+        }
+
+    </script>
+    
+</body>
+
+</html>

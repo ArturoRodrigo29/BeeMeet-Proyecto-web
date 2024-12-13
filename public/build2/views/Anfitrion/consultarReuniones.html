@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='../../js/index.global.min.js'></script>
+    <title>BeeMet - Calendario</title>
+    <link rel="stylesheet" href="../../css/app.css">
+    <!-- <link rel="stylesheet" href="../../css/calendar.css"> -->
+</head>
+<body>
+
+    <div id="headers"></div>
+
+    <main class="contenidoPrincipal calendarMargin">
+        <h2 class="cReunionesTitulo">Consultar reuniones</h2>
+        <!--<button class="CrearReunionButton" onclick="window.location.href = '/anfitrion/crearReunion';">Crear reunión</button>
+        <button onclick="window.location.href = '/anfitrion/reunionesLista';">(dev) Consultar reuniones</button> -->
+        
+        <section id="seccionCalendario">
+            <div id='calendar'></div>
+            
+            <!-- Modal para detalles del evento -->
+            <div id="eventModal" style="display:none;">
+                <div onclick="closeModal()"></div>
+                <div class="event-details">
+                    <h3>Evento el día <span id="modalDate"></span></h3>
+                    <div id="modalEvents"></div>
+                    <button onclick="closeModal()">Cerrar</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="footers"></div>
+
+    <!-- Estilos para el Swal -->
+    <style>
+      .titleSize{
+        font-size: 4rem;
+      }
+      .contentSize{
+        font-size: 2rem !important;
+      }
+      .buttonSize{
+        font-size: 2rem !important;
+      }
+      .iconSize{
+        font-size: 1.5rem;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/anfitrion/headers.js"></script>
+    <script src="/build/js/header.js"></script>
+    <script src="../../js/sidebar.js"></script>
+    <script src="../../js/anfitrion.js"></script>
+    <script src="../../js/anfitrion/calendar.js"></script>
+
+</body>
+</html>

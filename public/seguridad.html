@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Panel de seguridad</title>
+</head>
+
+<body>
+    <h1>Bienvenido al Panel de seguridad</h1>
+
+    <button onclick="logout()">Cerrar Sesión</button>
+    <button onclick="visualizarAgenda()">Visualizar Agenda</button>
+
+    <script>
+        function logout() {
+            fetch("/seguridad/logout", {
+                method: "GET"
+            })
+                .then(response => {
+                    if (response.ok) {
+                        window.location.href = "/";
+                    } else {
+                        console.error("Error al cerrar sesión:", response.statusText);
+                    }
+                })
+                .catch(error => console.error("Error al cerrar sesión:", error));
+
+        }
+        function visualizarAgenda(){
+            window.location.href = "/seguridad/visualizarAgenda.html";
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

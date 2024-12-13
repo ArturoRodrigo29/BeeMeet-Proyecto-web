@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeMeet - Detalles Reunión</title>
+    <link rel="stylesheet" href="../../css/app.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="headers"> </div>
+
+    <main class="contenidoPrincipal">
+        <div class="consultarDetallesReunion">
+            <div class="Detalle paragraph-example">
+                <h1 class="consultar_titulo title-example text-center">Detalles de reunión</h1>
+                <div class="botones">
+                  <button id="aumentar30" class="reagendar30m_btn">+30 minutos</button>
+                  <button id="aumentar60" class="reagendar1h_btn">+1 hora</button>
+                </div>
+                <div class="botones">
+                  <button id="reagendar" class="reagendar_btn">Reagendar reunión</button>
+                  <button id="cancelarReu" class="cancelar_btn">Cancelar reunión</button>
+                </div>
+                <!--DETALLES DE REUNIÓN-->
+                <form class="DetalleReunion row g-3">
+                    <div class="col-md-4">
+                        <label for="reunionId">Número de reunión:</label>
+                        <input type="text" class="Ninput" id="reunionId" value="ID_Reu" readonly disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="reunionTitulo">Título:</label>
+                        <input type="text" class="Ninput" id="reunionTitulo" value="Negociación con Cliente" readonly
+                            disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="salaL">Sala:</label>
+                        <input type="text" class="Ninput" id="sala" value="Sala de juntas" readonly disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="reunionFecha">Fecha:</label>
+                        <input type="text" class="Ninput" id="reunionFecha" value="20-02-2024" readonly disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="horario">Hora de inicio:</label>
+                        <input type="text" class="Ninput" id="horarioInicio" value="10:30 AM" readonly disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="horario">Hora de fin:</label>
+                        <input type="text" class="Ninput" id="horarioFin" value="12:00 PM" readonly disabled>
+                    </div>
+                </form>
+                <div class="boton">
+                    <button id="agregarInv" class="aggInvitado__btn" style="width: 100%;">Agregar invitado</button>
+                </div>
+                <br>
+                <div id="formularioinv" style="display: none;">
+                    <form id="" class="agregarCorreo row g-3">
+                        <div class="col-md-4">
+                            <label for="correos" class="Nlabel">Correo electrónico:</label>
+                            <input type="text" class="Ninput" id="correoInv" name="correos" required>
+                            <div id="emailForm"></div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="acompanantes" class="Nlabel">Número de acompañantes:</label>
+                            <input type="number" class="Ninput" id="acompanantesInv" min="0" max="5" step="1" value="0" name="acompanantes" required>
+                            <div class="invalid-feedback">
+                                Ingrese el número de acompañantes.
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="conboton">
+                                <button type= "button" id="botonAgregar" class="anadirbtn">Enviar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!--DETALLES INVITADOS-->
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="Tabla">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="nombreInvi" class="cabecera">Nombre del invitado</th>
+                                <th scope="col" data-sort="correo" class="cabecera">Correo electrónico</th>
+                                <th scope="col" data-sort="Estado" class="cabecera">Estado</th>
+                                <th scope="col" data-sort="acciones" class="cabecera">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footers"> </div>
+
+    <!-- Estilos para el Swal -->
+    <style>
+      .titleSize{
+        font-size: 4rem;
+      }
+      .contentSize{
+        font-size: 2rem !important;
+      }
+      .buttonSize{
+        font-size: 2rem !important;
+      }
+      .iconSize{
+        font-size: 1.5rem;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/anfitrion/headers.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/sidebar.js"></script>
+    <script src="/build/js/header.js"></script>
+    <script src="../../js/anfitrion.js"></script>
+    <script src="../../js/anfitrion/ConsultarDatosReunion.js"></script>
+    <script src="../../js/validaciones.js"></script>
+
+</body>
+
+</html>

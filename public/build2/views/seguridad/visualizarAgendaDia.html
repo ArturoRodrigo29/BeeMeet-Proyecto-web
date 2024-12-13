@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeMeet - Visualizar Agenda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="../../css/app.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--DataTables-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+    <!--SiderBar-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+
+<body>
+    <div id="headers"></div>
+
+    <main class="contenidoPrincipal">
+        <div class="visualizarAgenda">
+            <h1 class="title-example text-center">Visualizar agenda del día</h1>
+            <h2 class="subtitle-example text-center" id="fechaYHora"> </h2>
+            <div class="__Tabla table-responsive paragraph-example">
+                <table class="tabla table table-hover table-bordered table-sm" id="Tabla">
+                    <thead class="tabla__cabecera">
+                        <tr>
+                            <th scope="col" data-sort="nombreInvi" class="cabecera">Nombre del invitado</th>
+                            <th scope="col" data-sort="horario" class="cabecera">Fecha y hora</th>
+                            <th scope="col" data-sort="nombreAnfi" class="cabecera">Nombre del anfitrión</th>
+                            <th scope="col" data-sort="accion" class="cabecera">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tabla__cuerpo">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <div id="footers"></div>
+
+    <!-- Estilos para el Swal -->
+    <style>
+      .titleSize{
+        font-size: 4rem;
+      }
+      .contentSize{
+        font-size: 2rem !important;
+      }
+      .buttonSize{
+        font-size: 2rem !important;
+      }
+      .iconSize{
+        font-size: 1.5rem;
+      }
+    </style>
+    <script>
+      //Fecha y Hora en tiempo real
+      function actualizarFechaHora() {
+          const fechaActual = new Date(Date.now());
+          const fechaFormateada = fechaActual.toLocaleDateString() + " " + fechaActual.toLocaleTimeString();
+          const fechaYHoraElement = document.querySelector('h2');
+          fechaYHoraElement.innerHTML = `${fechaFormateada}`;
+        }
+      const intervaloActualizacion = 1000;
+      setInterval(actualizarFechaHora, intervaloActualizacion);
+      let table;
+      
+        actualizarFechaHora();
+        console.log("Hola");
+        obtenerReuniones();
+        
+
+
+    let dataTable;
+    function obtenerReuniones() {
+    fetch("/seguridad/getAgendas", {
+        method: "GET"
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        const tbody = document.querySelector('.tabla__cuerpo');
+        tbody.innerHTML = '';
+        data.forEach(reunion => {
+            if(reunion.isConfirmed === 1) {
+                const fila = document.createElement('tr');
+                console.log(reunion.fecha_reunion);
+
+                let reuniones = ``
+
+                // Concatenar las fechas y horas de repeticiones
+
+                fila.innerHTML = `
+                <td class="nombreI">${reunion.nombre_inv}</td>
+                <td class="horario">${reunion.fecha_reunion}</td>
+                <td class="nombreA">${reunion.nombre_user} ${reunion.apellidoP_user} ${reunion.apellidoM_user}</td>
+                <td class="accion">
+                  <button class="btn btn-sm visualizar" data-id="${reunion.id_inv}" onclick="verDetallesInv(${reunion.id_inv}, ${reunion.id_reunion})"><img src="../../img/icons/ico-view.svg"></button>
+                </td>
+                `;
+                tbody.appendChild(fila);
+            }
+
+        });
+        cargarFiltros();
+    })
+    .catch(error => console.error("Error al visualizar los datos:", error));
+}
+
+function cargarFiltros() {
+  // Destruir y volver a inicializar DataTable
+  if (!$.fn.DataTable.isDataTable('#Tabla')) {
+    dataTable = $('#Tabla').DataTable({
+      pagingType: 'full_numbers', //Tipo de paginación
+      info: false, //Desactiva la información de los registros totales
+      language: {
+        lengthMenu: 'Mostrar _MENU_ registros', //Para cambiar el texto de los registros que se muestran
+        search: 'Buscar',
+        zeroRecords: 'No se encontró ninguna coincidencia ):'
+      },
+      columnDefs: [
+        { "orderable": false, "targets": -1 } // Desactiva el ordenamiento en la última columna (Acciones)
+      ],
+      autoWidth: true
+    });
+  } else {
+    dataTable.draw()
+  }
+}
+
+        
+    function verDetallesInv(idInvitado, id_reunion) {
+        const url = `verDatosInv.html?idInvitado=${idInvitado}&idReunion=${id_reunion}`;
+        window.open(url);
+    }
+    </script>
+    
+    <script src="../../js/seguridad/visualizarAgendaDelDia.js"></script>
+    <script src="../../js/seguridad/seguridad.js"></script>
+    <script src="../../js/seguridad/headers.js"></script> 
+    <script src="../../js/header.js"></script>
+    <script src="../../js/sidebar.js"></script>
+   <!--  <script src="../../js/visualizarAgenda.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeMeet - Consultar Detalles de Reunión</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="../../css/app.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--DataTables-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+    <!--SiderBar-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+    <div class="headers"></div>
+
+    <main class="contenidoPrincipal">
+        <div class="consultarDetallesReunion">
+            <h1 class="consultar_titulo title-example text-center">Consultar Detalles de Reunión</h1>
+            <div class="botones">
+                <button class="reagendar_btn">Reagendar reunión</button>
+                <button class="reagendar30m_btn">+30 minutos</button>
+                <button class="reagendar1h_btn">+1 hora</button>
+                <button class="cancelar_btn">Cancelar reunión</button>
+                <button class="regresar_btn">Regresar</button>
+            </div>
+            <div class="Detalle paragraph-example">
+                <!--DETALLES DE REUNIÓN-->
+                <form class="DetalleReunion">
+                    <div class="_idReu">
+                        <label for="reunionId">Reunión:</label>
+                        <input type="text" id="reunionId" value="ID_Reu" readonly disabled>
+                    </div>
+                    <div class="_tituloReu">
+                        <label for="reunionTitulo">Título:</label>
+                        <input type="text" id="reunionTitulo" value="Negociación con Cliente"
+                            readonly disabled>
+                    </div>
+                    <div class="_fecha">
+                        <label for="reunionFecha">Fecha:</label>
+                        <input type="text" id="reunionFecha" value="20-02-2024" readonly disabled>
+                    </div>
+                    <div class="_horario">
+                        <label for="horario">Horario:</label>
+                        <input type="text" id="horarioInicio" value="10:30 AM" readonly disabled>
+                        <label class="guion">-</label>
+                        <input type="text" id="horarioFin" value="12:00 PM" readonly disabled>
+
+                    </div>
+                    <div class="_nombreSala">
+                        <label for="salaL">Sala:</label>
+                        <input type="text" id="sala" value="Sala de juntas" readonly disabled>
+                    </div>
+                    <div class="_numeroSala">
+                        <label for="salaNumero">Número:</label>
+                        <input type="text" id="salaNumero" value="42" readonly disabled>
+                    </div>
+                    <div class="_pisoSala">
+                        <label for="salaPiso">Piso:</label>
+                        <input type="text" id="salaPiso" value="2" readonly disabled>
+                    </div>
+                </form>
+                <!--DETALLES INVITADOS-->
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="Tabla">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="nombreInvi" class="cabecera">Nombre del invitado</th>
+                                <th scope="col" data-sort="correo" class="cabecera">Correo Electrónico</th>
+                                <th scope="col" data-sort="acciones" class="cabecera">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="footers"></div>
+
+    <script src="../../js/header.js"></script>
+    <script src="../../js/sidebar.js"></script>
+    <script src="../../js/consultarDetallesReunion.js"></script>
+</body>
+
+</html>

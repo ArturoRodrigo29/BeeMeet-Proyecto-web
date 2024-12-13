@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeMeet - Detalles Reunión</title>
+    <link rel="stylesheet" href="../../css/app.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!--DataTables-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+</head>
+
+<body>
+    <div id="headers"> </div>
+
+    <main class="contenidoPrincipal">
+        <div class="consultarDatosReunion">
+            <div class="Detalle paragraph-example">
+                <h1 class="consultar_titulo title-example text-center">Detalles de la reunión</h1>
+                <div class="botones">
+                    <button class="regresar_btn"
+                        onclick="window.location.href='/admin/catalogo/GestionarReuniones.html'">Regresar</button>
+                </div>
+                <form class="DetalleReunion row g-3">
+                    <div class="col-md-6">
+                        <label for="reunionId">Reunión:</label>
+                        <input type="text" class="Ninput" id="idReunion" value="ID_Reu" readonly disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="reunionTitulo">Título:</label>
+                        <input type="text" class="Ninput" id="nombreReunion" value="Negociación con Cliente" readonly
+                            disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="salaL">Sala:</label>
+                        <input type="text" class="Ninput" id="nombreSala" value="Sala de juntas" readonly disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="salaNumero">Número:</label>
+                        <input type="text" class="Ninput" id="numeroSala" value="42" readonly disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="salaPiso">Piso:</label>
+                        <input type="text" class="Ninput" id="nombreSala" value="Sala de juntas" readonly disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="reunionFecha">Fecha:</label>
+                        <input type="text" class="Ninput" id="fechaInicio" value="20-02-2024" readonly disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="horario">Hora de inicio:</label>
+                        <input type="text" class="Ninput" id="horaInicio" value="10:30 AM" readonly disabled>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="horario">Hora de fin:</label>
+                        <input type="text" class="Ninput" id="horaFin" value="12:00 PM" readonly disabled>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="descripcion">Descripción:</label>
+                        <input type="text" class="Ninput" id="descripcionReunion" readonly disabled>
+                    </div>
+                </form>
+                <!--DETALLES INVITADOS-->
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="Tabla">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="nombreInvi" class="cabecera">Nombre del invitado</th>
+                                <th scope="col" data-sort="correo" class="cabecera">Correo electrónico</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footers"> </div>
+
+    <!-- Estilos para el Swal -->
+    <style>
+      .titleSize{
+        font-size: 4rem;
+      }
+      .contentSize{
+        font-size: 2rem !important;
+      }
+      .buttonSize{
+        font-size: 2rem !important;
+      }
+      .iconSize{
+        font-size: 1.5rem;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/admin/consultarDatosReunion.js"></script>
+    <script src="../../js/admin/headers.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/sidebar.js"></script>
+    <script src="/build/js/header.js"></script>
+    <script src="../../js/superAdmin.js"></script>
+
+</body>
+
+</html>

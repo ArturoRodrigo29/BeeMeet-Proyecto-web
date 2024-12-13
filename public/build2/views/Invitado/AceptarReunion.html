@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeMeet - Registro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+            rel="stylesheet">
+    <link rel="stylesheet" href="../../css/app.css">
+    <!--Formulario-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--SiderBar-->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</head>
+
+<body>
+<div id="headers"></div>
+
+<main class="contenidoPrincipal">
+    <div id="contenedor_main">
+        <div class="registrarInforPersonal">
+            <section class="cRegistro">
+                <h1 class="title-example text-center">Registro de acceso a la reunión</h1>
+
+                <div id="DetallesReunion"></div>
+
+
+                <form novalidate>
+                    <!-- Información de Acompañantes -->
+                     <div class="acompanantes">
+                         <div id="acompanantesAgregados" class="invisibleNone"><span>Lista de acompañantes:</span></div>
+                         <div>
+                            <div class="flex baseAReunion">
+                                <label class="instruccion">¿Desea agregar acompañantes? Puede agregar hasta <span id="Numcolado"></span> acompañantes</label>
+                                <select name="" id="siONoAcompanantes">
+                                    <option value="si">Sí</option>
+                                    <option value="no" selected>No</option>
+                                </select>
+                            </div>
+                             <div id="acompanantesHabilitada" class="invisibleNone">
+                                 <div class="form-group Correo has-validation">
+                                     <label class="labelControl">Correo electrónico del acompañante*:</label>
+                                     <input type="email" class="form-control form-control-lg inputControl mb-25rem" id="loginEmail" placeholder="email@example.com">
+                                     <div id="emailForm"></div>
+                                 </div>
+                                 <div id="BotonAgregarAcompanante">
+                                     <button type="button" id="agregarAcompanante" class="botonAcompañante">Agregar acompañante</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="dispositivos">
+                         <!-- Información de Dispositivos -->
+                         <div id="dispositivosAgregados" class="invisibleNone"><span>Lista de dispositivos:</span></div>
+                         <div>
+                            <div class="flex baseAReunion">
+                                <label class="instruccion">¿Llevará algun dispositivo?</label>
+                                <select name="" id="siONoDispositivos">
+                                    <option value="si">Sí</option>
+                                    <option value="no" selected>No</option>
+                                </select>
+                            </div>
+                             <div id="dispositivosHabilitada" class="invisibleNone">
+                                 <div class="form-group">
+                                     <label class="labelControl">Tipo de Dispositivo*:</label>
+                                     <input class="form-control form-control-lg inputControl" type="text" placeholder="Tipo de dispositivo">
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="labelControl">Marca*:</label>
+                                     <input class="form-control form-control-lg inputControl" type="text" placeholder="Marca del dispositivo">
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="labelControl">Numero de serie*:</label>
+                                     <input class="form-control form-control-lg inputControl" type="text" placeholder="Numero de serie">
+                                 </div>
+                                 <div id="BotonAgregarDispositivo">
+                                     <button type="button" id="agregarDispositivo" class="botonDispositivo">Agregar dispositivo</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+
+                     <div class="automoviles">
+                         <!-- Información de Automóvil -->
+                         <div id="automovilesAgregados" class="invisibleNone"><span>Lista de automoviles</span></div>
+                         <div>
+                            <div class="flex baseAReunion">
+                                <label class="instruccion">¿Llegará en automóvil propio?</label>
+                                <select name="" id="siONoAutomoviles">
+                                    <option value="si">Sí</option>
+                                    <option value="no" selected>No</option>
+                                </select>
+                            </div>
+                             <div id="automovilHabilitada" class="invisibleNone">
+                                 <div class="form-group">
+                                     <label class="labelControl">Número de placa*:</label>
+                                     <input class="form-control form-control-lg inputControl" type="text" placeholder="Número de placa">
+                                     <!-- <div>Ingrese el número de placa.</div> -->
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="labelControl">Marca*:</label>
+                                     <input class="form-control form-control-lg inputControl" type="text" placeholder="Marca">
+                                     <!-- <div>Ingrese la marca del automóvil.</div> -->
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="labelControl">Modelo*:</label>
+                                     <input class="form-control form-control-lg inputControl" type="text" placeholder="Modelo">
+                                     <!-- <div>Ingrese el modelo del automóvil.</div> -->
+                                 </div>
+                                 <div class="form-group">
+                                     <label class="labelControl">Color*:</label>
+                                     <input class="form-control form-control-lg inputControl" type="text" placeholder="Color">
+                                     <!-- <div>Ingrese el color del automóvil.</div> -->
+                                 </div>
+                                 <div id="BotonAgregarAutomovil">
+                                     <button type="button" id="agregarAutomovil" class="botonAutomovil">Agregar automóvil</button>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="buttonContainer">
+                         <input class="buttonAcepatarReunion" type="button" value="Aceptar" />
+                     </div>
+                </form>
+            </section>
+        </div>
+    </div>
+</main>
+
+<div id="footers"></div>
+
+<!-- Estilos para el Swal -->
+<style>
+  .titleSize{
+    font-size: 4rem;
+  }
+  .contentSize{
+    font-size: 2rem !important;
+  }
+  .buttonSize{
+    font-size: 2rem !important;
+  }
+  .iconSize{
+    font-size: 1.5rem;
+  }
+</style>
+<script>
+    var maxAcompanantes = 0;
+    document.addEventListener('DOMContentLoaded',async function() {
+        obtenerDetallesReunion();
+        traerDatos();
+    });
+
+    async function obtenerDetallesReunion() {
+      console.log("Paso")
+        fetch('obtenerDetallesReunion')
+            .then(response => response.json())
+            .then(data => {
+                console.log('Detalles de la Reunion:', data);
+                const div = document.getElementById('DetallesReunion');
+                document.getElementById('Numcolado').textContent = data[0].invitaciones[0].numColados;
+                maxAcompanantes = data[0].invitaciones[0].numColados;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+    
+    async function traerDatos() {
+      console.log("Paso")
+        try {
+            const response = await fetch('/invitado/getemail');
+            const data = await response.json();
+            console.log(data);
+            var datosUsuario = await getData(data.email);  // Usar await aquí garantiza que esperamos el resultado
+            console.log(datosUsuario);
+            const colado = await fetch(`/invitado/catalogo/colados/${datosUsuario.id_invitado}`);
+            console.log(colado);
+        }
+        catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    async function getData(correo) {
+        try {
+                // Remover el ':' adicional del inicio de la URL si no es necesario
+                const response = await fetch('/invitado/catalogo/usuarioEmail/:'+correo);
+            const data = await response.json();
+            console.log(data);
+                return data;  // Asegura que data sea devuelta de la función
+        } catch (error) {
+                modal.fire({
+                title: "Error",
+                icon: "error",
+                text: "Error fetching data:" + error,
+            });
+            console.error('Error fetching data:', error);
+                return null;  // Devolver null o algún indicativo de error
+        }
+    }
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const colados = [];
+        const dispositivos = [];
+        const automoviles = [];
+        let cuentaA = 1; //Para contar numero de acompañantes, dispositivos, automoviles
+        let cuentaB = 1; //Para contar numero de acompañantes, dispositivos, automoviles
+        let cuentaC = 1; //Para contar numero de acompañantes, dispositivos, automoviles
+
+
+        document.getElementById('agregarAcompanante').addEventListener('click', function() {
+            const email = document.querySelector('#acompanantesHabilitada input[type="email"]').value;
+            if (email && colados.length < maxAcompanantes) {
+                colados.push(email);
+                const div = document.createElement('div');
+                div.classList.add("comoTal");
+                div.innerHTML = `<div class="flex cuentaA"><p class="size16rem"><span>${cuentaA}) </span> ${email}</p><div class="imgTrashBorrar"><img src="../../img/icons/trash.png" alt="Borrar"></div></div>`;
+                document.getElementById('acompanantesAgregados').appendChild(div);
+                document.querySelector('#acompanantesHabilitada input[type="email"]').value = '';
+                cuentaA++;
+            } else if (colados.length >= maxAcompanantes) {
+              modal.fire({
+                title: "Error",
+                icon: "error",
+                text: "No se puede agregar más colados.",
+              });
+            }
+        });
+
+        document.getElementById('agregarDispositivo').addEventListener('click', function() {
+            const tipo = document.querySelector('#dispositivosHabilitada input[placeholder="Tipo de dispositivo"]').value;
+            const marca = document.querySelector('#dispositivosHabilitada input[placeholder="Marca del dispositivo"]').value;
+            const numeroSerie = document.querySelector('#dispositivosHabilitada input[placeholder="Numero de serie"]').value;
+            if (tipo && marca && numeroSerie) {
+                dispositivos.push({ tipo, marca, numeroSerie });
+                const div = document.createElement('div');
+                div.classList.add("comoTal");
+                div.innerHTML = `<div class="flex cuentaB"><p class="size16rem"><span>${cuentaB}) </span> ${tipo}, ${marca}, ${numeroSerie}</p><div class="imgTrashBorrar"><img src="../../img/icons/trash.png" alt="Borrar"></div></div>`;
+                document.getElementById('dispositivosAgregados').appendChild(div);
+                document.querySelector('#dispositivosHabilitada input[placeholder="Tipo de dispositivo"]').value = '';
+                document.querySelector('#dispositivosHabilitada input[placeholder="Marca del dispositivo"]').value = '';
+                document.querySelector('#dispositivosHabilitada input[placeholder="Numero de serie"]').value = '';
+                cuentaB++;
+            }
+        });
+
+        document.getElementById('agregarAutomovil').addEventListener('click', function() {
+            const placa = document.querySelector('#automovilHabilitada input[placeholder="Número de placa"]').value;
+            const marca = document.querySelector('#automovilHabilitada input[placeholder="Marca"]').value;
+            const modelo = document.querySelector('#automovilHabilitada input[placeholder="Modelo"]').value;
+            const color = document.querySelector('#automovilHabilitada input[placeholder="Color"]').value;
+            if (placa && marca && modelo && color) {
+                automoviles.push({ placa, marca, modelo, color });
+                const div = document.createElement('div');
+                div.classList.add("comoTal");
+                div.innerHTML = `<div class="flex cuentaC"><p class="size16rem"><span>${cuentaC}) </span> ${placa}, ${marca}, ${modelo}, ${color}</p><div class="imgTrashBorrar"><img src="../../img/icons/trash.png" alt="Borrar"></div></div>`;
+                document.getElementById('automovilesAgregados').appendChild(div);
+                document.querySelector('#automovilHabilitada input[placeholder="Número de placa"]').value = '';
+                document.querySelector('#automovilHabilitada input[placeholder="Marca"]').value = '';
+                document.querySelector('#automovilHabilitada input[placeholder="Modelo"]').value = '';
+                document.querySelector('#automovilHabilitada input[placeholder="Color"]').value = '';
+                cuentaC++;
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            if (event.target.closest('.imgTrashBorrar')) {
+                const div = event.target.closest('.comoTal');
+                const divPrincipalMain = event.target.closest('.flex');
+
+                if (divPrincipalMain.classList.contains('cuentaA')) {
+                    cuentaA = 1;
+                    colados.pop();
+                } else if (divPrincipalMain.classList.contains('cuentaB')) {
+                    cuentaB = 1;
+                } else if (divPrincipalMain.classList.contains('cuentaC')) {
+                    cuentaC = 1;
+                }
+
+                div.remove();
+            }
+        });
+
+        document.querySelector('input[type="button"]').addEventListener('click', function() {
+            const data = {
+                colados,
+                dispositivos,
+                automoviles
+            };
+
+            modal.fire({
+      timer: undefined,
+      icon: 'question',
+      title: "¿Desea continuar?",
+      html: `Confirmará la asistencia a la reunión`,
+      showDenyButton: true,
+      confirmButtonText: "Confirmar",
+      denyButtonText: `Cancelar`
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch('aceptarReunionData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('data:', data);
+                modal.fire({
+                  title: "Operación exitosa",
+                  icon: "success",
+                  text: "Reunión aceptada correctamente",
+                }).then(() => {
+                  window.location.href = 'agendadas.html';
+                });
+                //redirecccionamiento a agendadas.html
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                modal.fire({
+                    title: "Error",
+                    icon: "error",
+                    text: data.error,
+                });
+            });
+      } else if (result.isDenied) {
+        
+      }
+    });
+
+
+            
+
+            console.log(JSON.stringify(data, null, 2));
+
+            // enviar datos al servidor
+            //alert('Datos enviados! Verifique la consola para ver el JSON.');
+
+            
+        });
+    });
+</script>
+
+<script>
+    document.getElementById('siONoAcompanantes').addEventListener('change', function() {
+        const selectedValue = this.value;
+        if (selectedValue === 'si') {
+            document.getElementById('acompanantesAgregados').classList.remove('invisibleNone');
+            document.getElementById('acompanantesHabilitada').classList.remove('invisibleNone');
+        } else if (selectedValue === 'no') {
+            document.getElementById('acompanantesAgregados').classList.add('invisibleNone');
+            document.getElementById('acompanantesHabilitada').classList.add('invisibleNone');
+        }
+    });
+
+    document.getElementById('siONoDispositivos').addEventListener('change', function() {
+        const selectedValue = this.value;
+        if (selectedValue === 'si') {
+            document.getElementById('dispositivosAgregados').classList.remove('invisibleNone');
+            document.getElementById('dispositivosHabilitada').classList.remove('invisibleNone');
+        } else if (selectedValue === 'no') {
+            document.getElementById('dispositivosAgregados').classList.add('invisibleNone');
+            document.getElementById('dispositivosHabilitada').classList.add('invisibleNone');
+        }
+    });
+
+    document.getElementById('siONoAutomoviles').addEventListener('change', function() {
+        const selectedValue = this.value;
+        if (selectedValue === 'si') {
+            document.getElementById('automovilesAgregados').classList.remove('invisibleNone');
+            document.getElementById('automovilHabilitada').classList.remove('invisibleNone');
+        } else if (selectedValue === 'no') {
+            document.getElementById('automovilesAgregados').classList.add('invisibleNone');
+            document.getElementById('automovilHabilitada').classList.add('invisibleNone');
+        }
+    });
+</script>
+
+
+<!--<script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // hacer un fetch al servidor para obtener los detalles de la reunion y el numero maxico de colados permitidos
+
+
+
+        // Acompañantes
+        const radioAcompanantesSi = document.getElementById('radioAcompanantesSi');
+        const radioAcompanantesNo = document.getElementById('radioAcompanantesNo');
+        const acompanantesHabilitada = document.getElementById('acompanantesHabilitada');
+        const botonAgregarAcompanante = document.getElementById('agregarAcompanante');
+
+        radioAcompanantesSi.addEventListener('change', function() {
+            if (radioAcompanantesSi.checked) {
+                acompanantesHabilitada.classList.remove('hidden');
+            }
+        });
+
+        radioAcompanantesNo.addEventListener('change', function() {
+            if (radioAcompanantesNo.checked) {
+                acompanantesHabilitada.classList.add('hidden');
+            }
+        });
+
+        botonAgregarAcompanante.addEventListener('click', function() {
+            const nuevaEntrada = document.createElement('div');
+            nuevaEntrada.classList.add('form-group', 'Correo', 'has-validation');
+            nuevaEntrada.innerHTML = `
+            <label class="labelControl">Correo electrónico del acompañante*:</label>
+            <input type="email" class="form-control form-control-lg inputControl" placeholder="email@example.com" required>
+            <div class="invalid-feedback">Ingrese un correo válido.</div>
+        `;
+            acompanantesHabilitada.insertBefore(nuevaEntrada, botonAgregarAcompanante);
+        });
+
+        // Dispositivos
+        const radioDispositivosSi = document.getElementById('radioDispositivosSi');
+        const radioDispositivosNo = document.getElementById('radioDispositivosNo');
+        const dispositivosHabilitada = document.getElementById('dispositivosHabilitada');
+        const botonAgregarDispositivo = document.getElementById('agregarDispositivo');
+
+        radioDispositivosSi.addEventListener('change', function() {
+            if (radioDispositivosSi.checked) {
+                dispositivosHabilitada.classList.remove('hidden');
+            }
+        });
+
+        radioDispositivosNo.addEventListener('change', function() {
+            if (radioDispositivosNo.checked) {
+                dispositivosHabilitada.classList.add('hidden');
+            }
+        });
+
+        botonAgregarDispositivo.addEventListener('click', function() {
+            const nuevaEntrada = document.createElement('div');
+            nuevaEntrada.classList.add('DatosDispositivo');
+            nuevaEntrada.innerHTML = `
+            <div class="form-group ">
+                <label class="labelControl">Número de serie*:</label>
+                <input type="text" class="form-control form-control-lg inputControl" placeholder="Tipo de Dispositivo" required>
+                <div class="invalid-feedback">Ingrese el tipo de dispositivo.</div>
+            </div>
+            <div class="form-group ">
+                <label class="labelControl">Modelo*:</label>
+                <input type="text" class="form-control form-control-lg inputControl" placeholder="Modelo del Dispositivo" required>
+                <div class="invalid-feedback">Ingrese el modelo del dispositivo.</div>
+            </div>
+            <div class="form-group ">
+                <label class="labelControl">Marca*:</label>
+                <input type="text" class="form-control form-control-lg inputControl" placeholder="Marca del Dispositivo" required>
+                <div class="invalid-feedback">Ingrese la marca del dispositivo.</div>
+            </div>
+        `;
+            dispositivosHabilitada.insertBefore(nuevaEntrada, botonAgregarDispositivo);
+        });
+
+        // Automóviles
+        const radioAutoSi = document.getElementById('radioAutoSi');
+        const radioAutoNo = document.getElementById('radioAutoNo');
+        const automovilHabilitada = document.getElementById('automovilHabilitada');
+        const botonAgregarAutomovil = document.getElementById('agregarAutomovil');
+
+        radioAutoSi.addEventListener('change', function() {
+            if (radioAutoSi.checked) {
+                automovilHabilitada.classList.remove('hidden');
+            }
+        });
+
+        radioAutoNo.addEventListener('change', function() {
+            if (radioAutoNo.checked) {
+                automovilHabilitada.classList.add('hidden');
+            }
+        });
+
+        botonAgregarAutomovil.addEventListener('click', function() {
+            const nuevaEntrada = document.createElement('div');
+            nuevaEntrada.classList.add('form-group');
+            nuevaEntrada.innerHTML = `
+            <label class="labelControl">Número de Placa*:</label>
+            <input type="text" class="form-control form-control-lg inputControl" placeholder="Número de Placa" required>
+            <div class="invalid-feedback">Ingrese el número de placa.</div>
+        `;
+            automovilHabilitada.insertBefore(nuevaEntrada, botonAgregarAutomovil);
+        });
+    });
+
+</script>-->
+
+
+<script src="../../js/invitado/headers.js"></script>
+<script src="../../js/header.js"></script>
+<script src="../../js/invitado/invitado.js"></script>
+<script src="../../js/sidebar.js"></script>
+<script src="../../js/plantilla-formularios.js"></script>
+<script src="../../js/validaciones.js"></script>
+
+</body>
+</html>

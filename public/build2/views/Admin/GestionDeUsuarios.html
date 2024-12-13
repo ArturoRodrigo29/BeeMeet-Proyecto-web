@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeMeet - Gestion Usuarios</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet" href="../../css/app.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--DataTables-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css" />
+    <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+
+</head>
+
+<body>
+    <div id="headers"></div>
+
+    <div class="content">
+        <h1 class="title-example text-center">Gestionar usuarios</h1>
+        <div class="button-container text-center">
+          <a onclick="redirigeCrearUsu()" class="button">Crear usuario</a>
+        </div>
+        <div class="__Tabla table-responsive paragraph-example">
+            <table class="tabla table table-hover table-bordered table-sm" id="Tabla">
+                <thead class="tabla__cabecera">
+                    <tr>
+                        <th scope="col" data-sort="id" class="cabecera">ID</th>
+                        <th scope="col" data-sort="nombre" class="cabecera">Nombre</th>
+                        <th scope="col" data-sort="email" class="cabecera">Correo electrónico</th>
+                        <th scope="col" data-sort="tipoU" class="cabecera">Tipo de usuario</th>
+                        <th scope="col" data-sort="acciones" class="cabecera">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="tabla__cuerpo" id="tbodyUsuarios">
+                </tbody>
+            </table>
+        </div>
+        <br>
+    </div>
+    
+
+    <div id="footers"></div>
+
+
+    <!-- Estilos para el Swal -->
+    <style>
+      .titleSize{
+        font-size: 4rem;
+      }
+      .contentSize{
+        font-size: 2rem !important;
+      }
+      .buttonSize{
+        font-size: 2rem !important;
+      }
+      .iconSize{
+        font-size: 1.5rem;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../../js/admin/headers.js"></script>
+    <script src="../../js/sidebar.js"></script>
+    <script src="../../js/admin/gestionUsuarios.js"></script>
+    <script src="/build/js/header.js"></script>
+    <script src="../../../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../../js/superAdmin.js"></script>
+</body>
+
+</html>

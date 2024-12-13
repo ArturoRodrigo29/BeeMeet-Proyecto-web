@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver datos Invitado</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px; /* Ajusta el espacio interior de las celdas */
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* Añade un borde inferior a todas las celdas */
+        }
+
+        th {
+            background-color: #f2f2f2; /* Color de fondo para las celdas del encabezado */
+        }
+
+        /* Agrega espacio entre las columnas */
+        th:first-child, td:first-child {
+            padding-left: 20px;
+        }
+
+        th:last-child, td:last-child {
+            padding-right: 20px;
+        }
+
+        /* Agrega borde a todas las celdas */
+        th, td {
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="contenidoPrincipal">
+        <div class="HeroInvitado">
+            <h1 class="consultaForm__titulo text-center">Datos del invitado</h1>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="HeroInvitadoImg mx-auto" style="border-radius: 50%;width: 350px;height: 350px;">
+                        <img src="../../img/layout/trabajador-foto.jpg" style="width: 100%; height: 100%;" alt="Invitado" id="fotitoInvitado">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Invitado:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control HeroInvitadoinput" type="text" value="José Manuel Perez" disabled id="nombre_invitado">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Anfitrión:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control HeroInvitadoinput" type="text" value="Nombre Anfitrión" disabled id="nombre_anfitrion">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Empresa /Organización:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control HeroInvitadoinput" type="text" value="Super Secret Intelligence" disabled id="empresa_invitado">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Identificación a presentar:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control HeroInvitadoinput" type="text" value="INE" disabled id="identificacion_invitado">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Número de piso:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control HeroInvitadoinput" type="number" value="21" disabled id="piso_sala">
+                            </div>
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Número de sala:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control HeroInvitadoinput" type="number" value="6" disabled id="numero_sala">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="HeroEntradasSalidas">
+                <h2>Control de acceso</h2>
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="TablaEntradasSalidas">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="Dispositivos" class="cabecera">Hora de entrada</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Hora de salida</th>
+                                <th scope="col" data-sort="Eliminar" class="cabecera">Eliminar registro</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="HeroDispositivos">
+                <h2>Dispositivos electrónicos</h2>
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="TablaDispositivos">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="Dispositivos" class="cabecera">Dispositivo</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Número de serie</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Presente</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div>
+        <h2>Acompañantes</h2>
+        <label>Numero de acompañantes:</label>
+        <input type="text" id="acompanantes" disabled>
+        <label>Correo de acompañantes:</label>
+        <input type="text" id="correoAcompanantes" disabled>
+    </div>
+    <div>
+        <h2>Vehiculo</h2>
+        <label>Numero de placa:</label>
+        <input type="text" id="placa" disabled>
+        <label>Marca:</label>
+        <input type="text" id="marca" disabled>
+        <label>Modelo:</label>
+        <input type="text" id="modelo" disabled>
+        <label>Color:</label>
+        <input type="text" id="color" disabled>
+    </div>
+    <div>
+        <h2>Dispositivos electrónicos</h2>
+        <label>Dispositivo:</label>
+        <input type="text" id="dispositivo" placeholder="Dispositivo" disabled>
+        <label>Numero de Serie:</label>
+        <input type="text" id="numeroSerie" placeholder="Numero de Serie" disabled>
+        <br>
+        
+    </div>
+    
+    
+    <br>
+    <br>
+    <div>
+        <h2>Control de Accesos</h2>
+        <button id="registrarAcceso">Registrar Acceso</button>
+        <button id="registrarSalida">Registrar Salida</button>
+        <table>
+            <tr>
+                <th>Hora de Entrada</th>
+                <th>Hora de Salida</th>
+            </tr>
+            <tbody id="tablaAccesos">
+                <!-- accesos del invitado -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Estilos para el Swal -->
+    <style>
+      .titleSize{
+        font-size: 4rem;
+      }
+      .contentSize{
+        font-size: 2rem !important;
+      }
+      .buttonSize{
+        font-size: 2rem !important;
+      }
+      .iconSize{
+        font-size: 1.5rem;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Obtener el idInvitado desde URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const idInvitado = urlParams.get('idInvitado');
+        const idReunion = urlParams.get('idReunion');
+
+        // Función para obtener los datos del invitado desde la base de datos
+        async function obtenerDatosInvitado() {
+            console.log('Obteniendo datos del invitado...');
+            try {
+                const response = await fetch(`/seguridad/getInvitadoById/${idInvitado}`);
+                if (response.ok) {
+                    const invitado = await response.json();
+                    console.log(invitado);
+                    actualizarCampos(invitado);
+
+                }
+            }
+            catch (error) {
+                console.error(error);
+            }
+        }
+
+
+        // Función para actualizar los campos con los datos del invitado
+        function actualizarCampos(invitado) {
+            //pruebas de impresion de datos
+            //console.log(invitado.empresa_invitado); 
+            //console.log(invitado.Invitacion[0].reunion.usuario.nombre_usuario);
+            console.log('Actualizando campos con los datos del invitado...');
+            document.getElementById('nombreInvitado').value = `${invitado.nombre_invitado} ${invitado.apellido_paterno_invitado} ${invitado.apellido_materno_invitado}`;
+            document.getElementById('nombreAnfitrion').value = `${invitado.Invitacion[0].reunion.usuario.nombre_usuario} ${invitado.Invitacion[0].reunion.usuario.apellido_paterno_usuario} ${invitado.Invitacion[0].reunion.usuario.apellido_materno_usuario}`;
+            document.getElementById('empresaOrganizacion').value = `${invitado.empresa_invitado}`;
+            document.getElementById('tipoVehiculo').value = `${invitado.Invitacion[0].Automovil[0].marca_automovil} ${invitado.Invitacion[0].Automovil[0].modelo_automovil} ${invitado.Invitacion[0].Automovil[0].color_automovil}`;
+            document.getElementById('placas').value = invitado.Invitacion[0].Automovil[0].matricula_automovil;
+            document.getElementById('identificacion').value = invitado.identificacion_invitado;
+            document.getElementById('dispositivo').value = `${invitado.Invitacion[0].dispositivo_electronico[0].marca_dispositivo_electronico} ${invitado.Invitacion[0].dispositivo_electronico[0].modelo_dispositivo_electronico}`;
+            document.getElementById('numeroSerie').value = invitado.Invitacion[0].dispositivo_electronico[0].no_serie_dispositivo_electronico;
+            document.getElementById('celular').value = invitado.telefono_invitado;
+            document.getElementById('piso').value = invitado.Invitacion[0].reunion.sala.piso_sala;
+            document.getElementById('sala').value = invitado.Invitacion[0].reunion.sala.numero_sala;
+
+            // Actualizar la tabla de control de accesos
+            const tablaAccesos = document.getElementById('tablaAccesos');
+            tablaAccesos.innerHTML = ''; // Limpiar la tabla antes de llenarla
+
+            const acceso = invitado.Invitacion[0].Acceso[0]; // Obtener el objeto de acceso
+
+            // Convertir las fechas a horas en la zona horaria local
+            const horaEntrada = new Date(acceso.hora_entrada_acceso).toLocaleTimeString();
+            const horaSalida = new Date(acceso.hora_salida_acceso).toLocaleTimeString();
+
+            // Crear una fila para mostrar los detalles de acceso con solo la hora
+            const fila = document.createElement('tr');
+            fila.innerHTML = `
+                <td>${horaEntrada}</td>
+                <td>${horaSalida}</td>
+            `;
+            tablaAccesos.appendChild(fila);
+        }
+        
+         // Función para registrar el acceso
+         function registrarAcceso() {
+            const horaActual = new Date().toLocaleTimeString();
+            const tablaAccesos = document.getElementById('tablaAccesos');
+            const nuevaFila = document.createElement('tr');
+            nuevaFila.innerHTML = `
+                <td>${horaActual}</td>
+                <td></td>
+            `;
+            tablaAccesos.appendChild(nuevaFila);
+        }
+
+        // Función para registrar la salida
+        function registrarSalida() {
+            const horaActual = new Date().toLocaleTimeString();
+            const tablaAccesos = document.getElementById('tablaAccesos');
+            const filas = tablaAccesos.getElementsByTagName('tr');
+            const ultimaFila = filas[filas.length - 1];
+            const celdas = ultimaFila.getElementsByTagName('td');
+            celdas[1].textContent = horaActual;
+        }
+
+        // Asignar eventos a los botones
+        document.getElementById('registrarAcceso').addEventListener('click', registrarAcceso);
+        document.getElementById('registrarSalida').addEventListener('click', registrarSalida);
+
+        
+        // Llamar a la función para obtener los datos del invitado cuando se cargue la página
+        obtenerDatosInvitado();
+    </script>
+</body>
+
+</html>

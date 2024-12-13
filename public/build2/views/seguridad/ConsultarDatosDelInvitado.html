@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeeMeet - Datos del Invitado</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../../css/app.css">
+    <!--SiderBar-->
+
+    <!-- Estilos para el Swal -->
+    <style>
+        .titleSize{
+            font-size: 4rem;
+        }
+        .contentSize{
+            font-size: 2rem !important;
+        }
+        .buttonSize{
+            font-size: 2rem !important;
+        }
+        .iconSize{
+            font-size: 1.5rem;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div id="headers"></div>
+
+    <main class="contenidoPrincipal">
+        <div class="HeroInvitado">
+            <h1 class="consultaForm__titulo text-center">Datos del invitado</h1>
+            <div class="row">
+                <div class="col-12 text-center">
+                    <div class="HeroInvitadoImg mx-auto" style="border-radius: 50%;width: 350px;height: 350px;">
+                        <img src="../../img/usuario.webp" style="width: 100%; height: 100%;" alt="Invitado" id="fotitoInvitado">
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Invitado:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control HeroInvitadoinput" type="text" value="José Manuel Perez" disabled id="nombre_invitado">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Anfitrión:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control HeroInvitadoinput" type="text" value="Nombre Anfitrión" disabled id="nombre_anfitrion">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Empresa/ organización:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control HeroInvitadoinput" type="text" value="Super Secret Intelligence" disabled id="empresa_invitado">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Identificación a presentar:</label>
+                            <div class="col-sm-9">
+                                <input class="form-control HeroInvitadoinput" type="text" value="INE" disabled id="identificacion_invitado">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Número de piso:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control HeroInvitadoinput" type="number" value="21" disabled id="piso_sala">
+                            </div>
+                            <label class="col-sm-3 col-form-label HeroInvitadolabel">Número de sala:</label>
+                            <div class="col-sm-3">
+                                <input class="form-control HeroInvitadoinput" type="number" value="6" disabled id="numero_sala">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="HeroEntradasSalidas">
+                <h2>Control de Acceso</h2>
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="TablaEntradasSalidas">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="Dispositivos" class="cabecera">Hora de entrada</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Hora de salida</th>
+                                <th scope="col" data-sort="Eliminar" class="cabecera">Eliminar registro</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo" id="tabla_acceso">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="BotonesEyS">
+                <button id="btnEntrada" class="BotonesEyS__Entrada">Entrada</button>
+                <button id="btnSalida" class="BotonesEyS__Salida">Salida</button>
+            </div>
+            <div class="HeroDispositivos">
+                <h2>Dispositivos electrónicos</h2>
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="TablaDispositivos">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="Dispositivos" class="cabecera">Marca</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Modelo</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Número de serie</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Presente</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo" id="tabla_dispositivos">
+                        </tbody>
+                    </table>
+                    <div class="BotonesEyS">
+                        <button id="confirmarDispositivos" class="BotonesEyS__Guardar">Confirmar</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="HeroDispositivos">
+                <h2>Automóviles</h2>
+                <div class="__Tabla table-responsive paragraph-example">
+                    <table class="tabla table table-hover table-bordered table-sm" id="TablaCarros">
+                        <thead class="tabla__cabecera">
+                            <tr>
+                                <th scope="col" data-sort="Dispositivos" class="cabecera">Marca</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Modelo</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Matrícula</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Color</th>
+                                <th scope="col" data-sort="NumSerie" class="cabecera">Presente</th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla__cuerpo" id="tabla_carros">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="BotonesEyS">
+                    <button id="confirmarAutomoviles" class="BotonesEyS__Guardar">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="footers"></div>
+
+    <script src="/seguridad/sweetalert211.min.js"></script>
+
+
+    <script>
+
+function eliminarAcceso(id_acceso, button, typeAction){
+  console.log(id_acceso, typeAction.trim());
+  modal.fire({
+    timer: undefined,
+    icon: 'question',
+    title: "¿Desea continuar?",
+    html: `Eliminará un registro de ${typeAction.trim()}`,
+    showDenyButton: true,
+    confirmButtonText: "Confirmar",
+    denyButtonText: `Cancelar`
+  }).then((result) => {
+    if (result.isConfirmed) {
+      if(typeAction.trim() == "salida"){
+        const row = button.closest('td');
+        console.log(row)
+        const rowUp = row.previousElementSibling;
+        console.log(rowUp);
+        rowUp.innerHTML = ""
+        row.innerHTML = ""
+        row.insertAdjacentHTML("beforeend", `<button class="btn btn-sm eliminar" onclick="eliminarAcceso(${id_acceso}, this, 'registro')"><img src="../../img/icons/ico-trash.svg" alt="Eliminar"></button>`)
+        
+      }else if(typeAction.trim() == "registro"){
+          button.closest('tr').remove();
+      }
+      fetch("/seguridad/eliminarAcceso", {
+          method: "DELETE",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ id_acceso: id_acceso, typeAction: typeAction.trim() }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        modal.fire({
+          title: "Operación exitosa",
+          icon: "success",
+          text: "Registro eliminado",
+        })
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+          console.error('Error:', error);
+          modal.fire({
+              title: "Error",
+              icon: "error",
+              text: data.error,
+          });
+      });
+    } else if (result.isDenied) {
+      
+    }
+  });
+}
+
+    let idReunion = 0;
+    let idInvitado = 0;
+    let idInvitacion = 0;
+
+    ola();
+    function ola () {
+            
+            let url = new URLSearchParams(location.search);
+
+            idReunion = url.get('idReunion');
+            idInvitado = url.get('idInvitado');
+            idInvitacion = url.get('idInvitacion');
+
+            const data = {
+                idReunion: idReunion,
+                idInvitado: idInvitado,
+                idInvitacion: idInvitacion
+            }
+            console.log(idReunion, idInvitado, idInvitacion);
+            fetch("/seguridad/reuniones/invitadoInf", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                idInvitacion = data.id_invitacion;
+                document.getElementById("fotitoInvitado").src = data.invitado.foto_invitado;
+                document.getElementById("nombre_invitado").value = `${data.invitado.nombre_invitado} ${data.invitado.apellido_paterno_invitado} ${data.invitado.apellido_materno_invitado}`;
+                document.getElementById("nombre_anfitrion").value = `${data.reunion.usuario.nombre_usuario} ${data.reunion.usuario.apellido_paterno_usuario} ${data.reunion.usuario.apellido_materno_usuario}`;
+                document.getElementById("empresa_invitado").value = data.invitado.empresa_invitado;
+                document.getElementById("identificacion_invitado").value = data.invitado.identificacion_invitado;
+                document.getElementById("piso_sala").value = data.reunion.sala.piso_sala;
+                document.getElementById("numero_sala").value = data.reunion.sala.numero_sala;
+
+                let tablaDispositivos = document.getElementById("tabla_dispositivos");
+                data.dispositivo_electronico.forEach(dispositivo => {
+                    let checked_dispositivo = 0;
+                    if (dispositivo.cheack_dispositivo_electronico === 1){
+                        checked_dispositivo = 1;
+                    }else{
+                        checked_dispositivo = 0;
+                    }
+
+                    let fila = document.createElement("tr");
+                    fila.innerHTML = `
+                        <td>${dispositivo.marca_dispositivo_electronico}</td>
+                        <td>${dispositivo.modelo_dispositivo_electronico}</td>
+                        <td>${dispositivo.no_serie_dispositivo_electronico}</td>
+                        <td><input type="checkbox" class="dispositivoPresente" value="${dispositivo.id_dispositivo_electronico}" name="registroDisp" ${checked_dispositivo === 1 ? 'checked' : ''}></td>
+
+                    `;
+
+                    tablaDispositivos.appendChild(fila);
+                });
+
+                let tablaAutos = document.getElementById("tabla_carros");
+                data.Automovil.forEach(carro => {
+                    let fila = document.createElement("tr");
+
+                    let checked_carro = 0;
+                    if (carro.cheack_automovil === 1){
+                        checked_carro = 1;
+                    }else{
+                        checked_carro = 0;
+                    }
+
+                    fila.innerHTML = `
+                    <td>${carro.marca_automovil}</td>
+                    <td>${carro.modelo_automovil}</td>
+                    <td>${carro.matricula_automovil}</td>
+                    <td>${carro.color_automovil}</td>
+                    <td><input type="checkbox" class="automovilPresente" value="${carro.id_automovil}" name="registroCarro" ${checked_carro === 1 ? 'checked' : ''}></td>
+                `;
+                    tablaAutos.appendChild(fila);
+                });
+
+                let tablaAcceso = document.getElementById("tabla_acceso");
+                data.Acceso.forEach(acceso => {
+                    let typeAction;
+                    const row = tablaAcceso.insertRow();
+                    row.insertCell(0).textContent = acceso.hora_entrada_acceso.split(",")[1];
+                    row.insertCell(1).textContent = acceso.hora_salida_acceso.split(",")[1];
+                    typeAction = (acceso.hora_salida_acceso) ? "salida" : "registro"
+                    const deleteCell = row.insertCell(2);
+                    const deleteButton = document.createElement("button");
+                    deleteCell.insertAdjacentHTML("beforeend", `<button class="btn btn-sm eliminar" onclick="eliminarAcceso(${acceso.id_acceso}, this, ${"'"+typeAction+"'"})"><img src="../../img/icons/ico-trash.svg" alt="Eliminar"></button>`)
+                });
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+            document.getElementById("btnEntrada").onclick = function () {
+                registrarHora("entrada");
+            };
+
+            document.getElementById("btnSalida").onclick = function () {
+                registrarHora("salida");
+            };
+            
+            function registrarHora(tipo) {
+                const tablaAcceso = document.getElementById("tabla_acceso");
+                tablaAcceso.innerHTML = '';
+                const currentTime = new Date().toLocaleTimeString('es-MX', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+                console.log(idInvitacion, currentTime, tipo);
+                fetch("/seguridad/registrarHora", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ idInvitacion: idInvitacion, idReunion: idReunion, hora: currentTime, tipo }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Recargar la pagina
+                    location.reload();
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+                
+                fetch("/seguridad/reuniones/invitadoInf", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(data),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    let tablaAcceso = document.getElementById("tabla_acceso");
+                    data.Acceso.forEach(acceso => {
+                        let typeAction;
+                        const row = tablaAcceso.insertRow();
+                        row.insertCell(0).textContent = acceso.hora_entrada_acceso.split(",")[1];
+                        row.insertCell(1).textContent = acceso.hora_salida_acceso.split(",")[1];
+                        typeAction = (acceso.hora_salida_acceso) ? "salida" : "registro"
+                        const deleteCell = row.insertCell(2);
+                        const deleteButton = document.createElement("button");
+                        deleteCell.insertAdjacentHTML("beforeend", `<button  class="btn btn-sm eliminar" onclick="eliminarAcceso(${acceso.id_acceso}, this, ${"'"+typeAction+"'"})"><img src="../../img/icons/ico-trash.svg" alt="Eliminar"></button>`)
+                    });
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+            }
+
+            document.getElementById('confirmarDispositivos').addEventListener('click', async () => {
+                const tablaDispositivos= document.getElementById('tabla_dispositivos');
+                const filasDisp= tablaDispositivos.getElementsByTagName('tr');
+                let filasCheck=[];
+                for (let i = 0; i < filasDisp.length; i++) {
+                    const checkbox = filasDisp[i].querySelector('td:last-child input[type="checkbox"]');
+                    if (checkbox.checked) {
+                        console.log(checkbox);
+                        filasCheck.push(checkbox.value);
+                    }
+                }
+                console.log(filasCheck);
+            
+                if (filasCheck.length === 0) {
+                    // Mostrar mensaje de error porque no se seleccionó ningún dispositivo
+                    modal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Por favor, selecciona al menos un dispositivo para confirmar.',
+                        confirmButtonText: 'Aceptar'
+                    });
+                    return; // Detener la ejecución
+                }
+                if (filasCheck.length > 0) {
+                    const response = await fetch('/seguridad/confirmarDispositivo', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ idInvitacion: idInvitacion, dispositivos: filasCheck })
+                    });
+                    const result = await response.json();
+                    console.log(result);
+                    //muestra mensaje en pantalla de "guardado exitoso" si el resultado es success
+                    if (result.status === 'success') {
+                        modal.fire({
+                            icon: 'success',
+                            title: 'Guardado exitoso',
+                            showConfirmButton: true,
+                        });
+                    } else {
+                      modal.fire({
+                            icon: 'error',
+                            title: 'Error al guardar',
+                            text: 'Ocurrió un error al guardar los dispositivos',
+                            showConfirmButton: true,
+                        });
+                    }
+
+                }
+            });
+        
+            document.getElementById('confirmarAutomoviles').addEventListener('click', async () => {
+                const tablaCarros= document.getElementById('tabla_carros');
+                const filasCar= tablaCarros.getElementsByTagName('tr');
+                let filasCheck=[];
+                for (let i = 0; i < filasCar.length; i++) {
+                    const checkbox = filasCar[i].querySelector('td:last-child input[type="checkbox"]');
+                    if (checkbox.checked) {
+                        console.log(checkbox);
+                        filasCheck.push(checkbox.value);
+                    }
+                }
+                console.log(filasCheck);
+
+                if (filasCheck.length === 0) {
+                    // Mostrar mensaje de error porque no se seleccionó ningún dispositivo
+                    modal.fire({
+                        icon: 'error',
+                        title: 'Error',
+                        text: 'Por favor, selecciona al menos un automovil para confirmar.',
+                        confirmButtonText: 'Aceptar'
+                    });
+                    return; // Detener la ejecución
+                }
+                if (filasCheck.length > 0) {
+                    const response = await fetch('/seguridad/confirmarAutomovil', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ idInvitacion: idInvitacion, automoviles:filasCheck })
+                    });
+                    const result = await response.json();
+                    console.log(result);
+                    //muestra mensaje en pantalla de "guardado exitoso" si el resultado es success
+                    if (result.status === 'success') {
+                      modal.fire({
+                            icon: 'success',
+                            title: 'Guardado exitoso',
+                            showConfirmButton: true,
+                        });
+                    } else {
+                      modal.fire({
+                            icon: 'error',
+                            title: 'Error al guardar',
+                            text: 'Ocurrió un error al guardar los dispositivos',
+                            showConfirmButton: true,
+                        });
+                    }
+                }
+            });
+        }
+    </script>
+    <script src="../../js/seguridad/seguridad.js"></script>
+    <script src="../../js/seguridad/headers.js"></script>
+    <script src="../../js/header.js"></script>
+    <script src="../../js/sidebar.js"></script>
+</body>
+
+</html>
